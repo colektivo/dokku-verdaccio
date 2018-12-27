@@ -8,7 +8,10 @@ Private npm registry server deployed as a dokku app.
 dokku apps:create my-registry
 dokku config:set my-registry PORT=5000
 dokku storage:mount my-registry /var/lib/dokku/data/storage/my-registry:/verdaccio/storage
+dokku storage:mount my-registry /var/lib/dokku/data/storage/my-registry-conf:/verdaccio/conf
+
 ssh root@dokku.example.com "chown 100:101 /var/lib/dokku/data/storage/my-registry/"
+ssh root@dokku.example.com "chown 100:101 /var/lib/dokku/data/storage/my-registry-conf/"
 dokku ps:set-restart-policy my-registry unless-stopped
 dokku domains:add my-registry my-registry.example.com
 ```
